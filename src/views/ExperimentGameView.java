@@ -1,28 +1,28 @@
 package views;
 
+import controllers.ControllerInterface;
 import models.ModelInterface;
-import controllers.ExperimentController;
 import controllers.WorldController;
+import settings.GameSettings;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class ExperimentGameView extends JPanel implements ViewInterface{
 
-    ModelInterface model;
+    GameSettings settings = GameSettings.getInstance();
+    ModelInterface worldModel;
+    ControllerInterface worldController = new WorldController();
 
-    WorldController world = new WorldController();
-    ExperimentController controller;
+    public ExperimentGameView(ModelInterface m){
+        int windowSize = settings.getScreenSize()*settings.getScale();
 
-    public ExperimentGameView(ModelInterface m, int frameSize){
-
-        model = m;
-        controller = new ExperimentController(m);
-        m.addController(controller);
+        worldModel = m;
+        m.addController(worldController);
 
         JFrame frame = new JFrame("Evolution Simulator");
-        frame.setLocation(50, 50);
-        frame.setMinimumSize(new Dimension(frameSize, frameSize));
+        frame.setLocation(settings.getScreenLocation(), settings.getScreenLocation());
+        frame.setMinimumSize(new Dimension(windowSize, windowSize));
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         frame.getContentPane().add(this);
@@ -33,18 +33,12 @@ public class ExperimentGameView extends JPanel implements ViewInterface{
 
     @Override
     protected void paintComponent(Graphics g) {
-        world.draw(g);
-        controller.draw(g);
-    }
-
-    @Override
-    public void updateControllers() {
-        model.sendSignals();
+        worldModel.display(g);
     }
 
     @Override
     public void updateModel() {
-        model.update();
+        worldModel.update();
     }
 
     @Override
