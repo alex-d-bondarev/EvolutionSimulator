@@ -1,22 +1,46 @@
 package settings;
 
+/**
+ * Specify game settings. In future will load settings from file.
+ */
 public class GameSettings {
 
+    /**
+     * Self storage
+     */
     private static GameSettings settings = null;
 
-    private int creatureSize;
+    /**
+     * Applications scale
+     */
     private int scale;
 
+    /**
+     * Application's window location on the screen
+     */
     private int screenLocation;
-    private int screenSize;
 
+    /**
+     * Size of the world (there will be maximum worldSize^2 creatures)
+     */
+    private int worldSize;
+
+    /**
+     * Constructor:
+     *
+     * Initialize settings. TODO: read from config file
+     */
     private GameSettings(){
-        creatureSize = 1;
-        scale = 10;
-        screenLocation = 500;
-        screenSize = 50;
+        setScale(10);
+        setScreenLocation(500);
+        setWorldSize(50);
     }
 
+    /**
+     * Get instance of settings
+     *
+     * @return GameSettings
+     */
     public static synchronized GameSettings getInstance(){
         if(settings == null) {
             settings = new GameSettings();
@@ -24,13 +48,10 @@ public class GameSettings {
         return settings;
     }
 
-    public int getCreatureSize() {
-        return creatureSize;
-    }
 
-    public void setCreatureSize(int creatureSize) {
-        this.creatureSize = creatureSize;
-    }
+    /////////////////////////////
+    //   Getters and setters   //
+    /////////////////////////////
 
     public int getScale() {
         return scale;
@@ -48,12 +69,12 @@ public class GameSettings {
         this.screenLocation = screenLocation;
     }
 
-    public int getScreenSize() {
-        return screenSize;
+    public int getWorldSize() {
+        return worldSize;
     }
 
-    public void setScreenSize(int screenSize) {
-        this.screenSize = screenSize;
+    public void setWorldSize(int worldSize) {
+        this.worldSize = worldSize;
     }
 
 }

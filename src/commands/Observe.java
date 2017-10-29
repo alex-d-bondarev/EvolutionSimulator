@@ -1,12 +1,12 @@
 package commands;
 
-import controllers.CreatureController;
-import models.CreatureModel;
+import models.CreatureInterface;
+import models.WorldInterface;
 
 public class Observe implements CommandInterface {
 
     @Override
-    public void execute(CreatureController world, CreatureModel creature) {
+    public void execute(CreatureInterface creature) {
 
     }
 }

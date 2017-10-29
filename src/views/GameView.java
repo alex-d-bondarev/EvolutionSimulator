@@ -1,24 +1,28 @@
 package views;
 
-import controllers.ControllerInterface;
-import models.ModelInterface;
-import controllers.WorldController;
+import models.World;
 import settings.GameSettings;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class ExperimentGameView extends JPanel implements ViewInterface{
+/**
+ * My first version of game view
+ */
+public class GameView extends JPanel implements ViewInterface{
 
+    /**
+     * Specify game settings
+     */
     GameSettings settings = GameSettings.getInstance();
-    ModelInterface worldModel;
-    ControllerInterface worldController = new WorldController();
 
-    public ExperimentGameView(ModelInterface m){
-        int windowSize = settings.getScreenSize()*settings.getScale();
-
-        worldModel = m;
-        m.addController(worldController);
+    /**
+     * Constructor:
+     * Initialize game parameters: settings, main model and main controller,
+     * Initialize and setup JFrame
+     */
+    public GameView(){
+        int windowSize = settings.getWorldSize()*settings.getScale();
 
         JFrame frame = new JFrame("Evolution Simulator");
         frame.setLocation(settings.getScreenLocation(), settings.getScreenLocation());
@@ -31,16 +35,18 @@ public class ExperimentGameView extends JPanel implements ViewInterface{
         frame.setVisible(true);
     }
 
+    /**
+     * Display world of creatures
+     * @param g
+     */
     @Override
     protected void paintComponent(Graphics g) {
-        worldModel.display(g);
+        World.getInstance().display(g);
     }
 
-    @Override
-    public void updateModel() {
-        worldModel.update();
-    }
-
+    /**
+     * Repaint world of creatures
+     */
     @Override
     public void draw() {
         repaint();

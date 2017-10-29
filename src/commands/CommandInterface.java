@@ -1,8 +1,8 @@
 package commands;
 
-import controllers.CreatureController;
-import models.CreatureModel;
+import models.CreatureInterface;
+import models.WorldInterface;
 
 public interface CommandInterface {
-    public void execute(CreatureController world, CreatureModel creature);
+    void execute(CreatureInterface creature);
 }
