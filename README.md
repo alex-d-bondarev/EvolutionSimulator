@@ -1,5 +1,7 @@
 # java-evolution-simulator
-Improve Java skills by writing simple evolution simulator
+Improve Java skills by writing simple evolution simulator.
+
+You can copy and reuse code [![MIT License](http://img.shields.io/badge/license-MIT-green.svg)](https://github.com/selenide/selenide/blob/master/LICENSE)
 
 ## Credits
 * Inspired by: [unrecovered](http://pikabu.ru/profile/unrecovered) and his [post on pikabu.ru](http://pikabu.ru/story/i_snova_o_nelyogkoy_zhizni_tsifrovyikh_bakteriydlinnopost_4887338)
